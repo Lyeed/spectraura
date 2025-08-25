@@ -1,0 +1,59 @@
+{
+    "name": "spectraura",
+    "version": "1.0.0",
+    "description": "",
+    "homepage": "https://github.com/Lyeed/spectraura#readme",
+    "bugs": {
+        "url": "https://github.com/Lyeed/spectraura/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Lyeed/spectraura.git"
+    },
+    "license": "Polyform-Noncommercial-1.0.0",
+    "author": {
+        "name": "Gautier Jousset",
+        "email": "gautier.jousset@epitech.eu",
+        "url": "https://lyeed.github.io"
+    },
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "start": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "prettier": "prettier --write .",
+        "xo": "xo . --fix",
+        "typescript": "tsc --noEmit",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
+    },
+    "engines": {
+        "node": ">=24.0"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "7.0.0",
+        "@fortawesome/free-solid-svg-icons": "7.0.0",
+        "@fortawesome/react-fontawesome": "3.0.0",
+        "clsx": "^2.1.1",
+        "highlight.js": "^11.11.1",
+        "modern-normalize": "3.0.1",
+        "react": "19.1.1",
+        "react-dom": "19.1.1"
+    },
+    "devDependencies": {
+        "@peterek/vite-plugin-favicons": "2.1.0",
+        "@types/node": "24.3.0",
+        "@types/react": "19.1.11",
+        "@types/react-dom": "19.1.7",
+        "@types/react-fontawesome": "1.6.8",
+        "@vitejs/plugin-react": "5.0.1",
+        "gh-pages": "6.3.0",
+        "globals": "16.3.0",
+        "prettier": "3.6.2",
+        "typescript": "5.9.2",
+        "vite": "7.1.3",
+        "vite-tsconfig-paths": "5.1.4",
+        "xo": "1.2.2"
+    }
+}

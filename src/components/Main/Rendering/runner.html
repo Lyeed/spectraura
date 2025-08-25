@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self' blob:; connect-src 'none'; img-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'none'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+        />
+        <meta
+            http-equiv="Permissions-Policy"
+            content="camera=(), microphone=(), geolocation=(), usb=(), bluetooth=(), payment=(), gyroscope=(), magnetometer=()"
+        />
+        <meta name="referrer" content="no-referrer" />
+
+        <title>Runner</title>
+        <style>
+            html,
+            body {
+                display: flex;
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            #canvas {
+                background: black;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script>
+            const canvasElement = document.getElementById("canvas");
+
+            /* %tick% */
+
+            const resize = () => {
+                const { width, height } = canvasElement.getBoundingClientRect();
+
+                canvasElement.width = width;
+                canvasElement.height = height;
+            };
+
+            resize();
+            window.addEventListener("resize", resize, { passive: true });
+
+            window.addEventListener("message", (event) => {
+                const { data } = event;
+
+                switch (data.type) {
+                    case "frame": {
+                        const canvasContext = canvasElement.getContext("2d");
+
+                        if (canvasContext) {
+                            tick(data.freq, data.time, canvasContext);
+                        }
+
+                        break;
+                    }
+
+                    default: {
+                        break;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

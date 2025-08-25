@@ -1,0 +1,82 @@
+.iframe {
+    margin: 0;
+    border: none;
+    flex: 1;
+    border-radius: 12px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    grid-area: rendering;
+    background: var(--foreground-1-color);
+    gap: 12px;
+    position: relative;
+}
+
+.toolbar {
+    display: flex;
+    gap: 12px;
+}
+
+.actionButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    height: 36px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: none;
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    font-size: 14px;
+    gap: 6px;
+    transition:
+        background 200ms,
+        color 200ms,
+        border-color 200ms;
+}
+
+.actionGroup {
+    display: flex;
+}
+.actionGroup > *:first-child {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.actionGroup > *:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.actionRight {
+    margin-left: auto;
+}
+
+.actionToggle,
+.actionButton:active {
+    background: #a64df9;
+    color: var(--text-color-primary);
+    border-color: #a64df9;
+}
+
+.codeWidget {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: calc(100% - 64px);
+    top: 64px;
+    left: 0;
+    background: var(--foreground-2-color);
+    border-radius: 12px;
+    padding: 16px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow: auto;
+}

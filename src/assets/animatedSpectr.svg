@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg overflow="visible" style="--eye:#e9f7ff;--neon1:#00e7f6;--neon2:#2d9fff;--neon3:#8b00ff" viewBox="48 0 130 330" xmlns="http://www.w3.org/2000/svg">
+<title>Spectre néon — viewBox haut élargi</title>
+<defs>
+<linearGradient id="a" y2="1">
+<stop stop-color="var(--neon1,#00e7f6)" offset="0"/>
+<stop stop-color="var(--neon2,#2d9fff)" offset=".6"/>
+<stop stop-color="var(--neon3,#8b00ff)" offset="1"/>
+</linearGradient>
+<linearGradient id="c" x2="0" y2="1">
+<stop stop-opacity=".28" offset="0"/>
+<stop stop-opacity="0" offset="1"/>
+</linearGradient>
+<filter id="b" x="-40%" y="-40%" width="180%" height="180%">
+<feGaussianBlur in="SourceGraphic" result="b" stdDeviation="4"/>
+<feColorMatrix in="b" result="g" values="1 0 0 0 0                 0 1 0 0 0                 0 0 1 0 0                 0 0 0 0.7 0"/>
+<feMerge>
+<feMergeNode in="g"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+<filter id="d" x="-100%" y="-100%" width="300%" height="300%">
+<feGaussianBlur stdDeviation="3"/>
+</filter>
+</defs>
+<animateTransform attributeName="transform" calcMode="spline" dur="4s" keySplines=".42,0,.58,1; .42,0,.58,1; .42,0,.58,1; .42,0,.58,1" keyTimes="0;.25;.5;.75;1" repeatCount="indefinite" type="translate" values="0,0; 0,-6; 0,0; 0,6; 0,0"/>
+<g filter="url(#b)">
+<path d="m74 146c-14 44-18 90-4 150h18q12-20 24 0h24q12-16 26 0c12-60 8-106-16-150z" fill="url(#a)" stroke="#102029" stroke-linejoin="round" stroke-width="1.6"/>
+<path d="m110 26c-26 6-42 36-46 70-2 15 12 30 10 45h72c-2-15 12-30 10-45-4-34-20-64-46-70z" fill="url(#a)" stroke="#102029" stroke-linejoin="round" stroke-width="1.6"/>
+<path d="m110 34c-20 5-34 30-38 60-2 14 10 28 8 43h60c-2-15 10-29 8-43-4-30-18-55-38-60z" fill="url(#c)"/>
+<ellipse cx="110" cy="102" rx="38" ry="27" fill="#05070b"/>
+<g fill="var(--eye)" filter="url(#d)" opacity=".55">
+<ellipse cx="94" cy="102" rx="10" ry="6"/>
+<ellipse cx="126" cy="102" rx="10" ry="6"/>
+</g>
+<ellipse cx="94" cy="102" rx="7.8" ry="4.2" fill="var(--eye)">
+<animate attributeName="ry" dur="3.2s" keyTimes="0;0.9375;0.96875;1" repeatCount="indefinite" values="4.2;4.2;0.1;4.2"/>
+</ellipse>
+<ellipse cx="126" cy="102" rx="7.8" ry="4.2" fill="var(--eye)">
+<animate attributeName="ry" dur="3.2s" keyTimes="0;0.9375;0.96875;1" repeatCount="indefinite" values="4.2;4.2;0.1;4.2"/>
+</ellipse>
+</g>
+</svg>

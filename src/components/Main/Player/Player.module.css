@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    border-radius: 12px;
+    margin: 0 auto;
+    background: var(--foreground-1-color);
+    grid-area: player;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    gap: 6px;
+    border: 1px solid var(--border-color);
+    height: 90px;
+}
+
+.container:has(.audio) {
+    width: 100%;
+    max-width: 600px;
+}
+
+.audio {
+    width: 100%;
+}
+
+.delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    margin: 0;
+    background: none;
+    color: white;
+    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pickText {
+    color: var(--text-color-secondary);
+}
+
+.availableSong {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+::-webkit-media-controls-panel {
+    background: var(--background-color);
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+::-webkit-file-upload-button {
+}

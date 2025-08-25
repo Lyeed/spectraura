@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 24px;
+}
+.title b {
+    font-weight: 800;
+}
+
+.title small {
+    font-size: 16px;
+    color: var(--text-color-secondary);
+    font-weight: 400;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg color="white" role="img" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+<g fill="currentColor">
+<circle cx="30" cy="20" r="6">
+<animate attributeName="cy" begin="0s" calcMode="spline" dur="0.8s" keySplines=".2,.6,.4,1; .2,.6,.4,1" keyTimes="0;0.5;1" repeatCount="indefinite" values="20;10;20"/>
+</circle>
+<circle cx="80" cy="20" r="6">
+<animate attributeName="cy" begin="0.15s" calcMode="spline" dur="0.8s" keySplines=".2,.6,.4,1; .2,.6,.4,1" keyTimes="0;0.5;1" repeatCount="indefinite" values="20;10;20"/>
+</circle>
+<circle cx="130" cy="20" r="6">
+<animate attributeName="cy" begin="0.3s" calcMode="spline" dur="0.8s" keySplines=".2,.6,.4,1; .2,.6,.4,1" keyTimes="0;0.5;1" repeatCount="indefinite" values="20;10;20"/>
+</circle>
+</g>
+</svg>
