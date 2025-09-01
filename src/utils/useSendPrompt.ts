@@ -1,17 +1,34 @@
 import { useCallback, useContext } from "react";
 import AppContext from "src/contexts/AppContext";
+import { useCurrentCode } from "./useCurrentCode";
 
 interface FetchResponse {
     message: string;
     code: string;
 }
 
-export const useSendPrompt = (): ((topic: string) => Promise<void>) => {
-    const { setChatting, setMessages, setSelected } = useContext(AppContext);
+export const useSendPrompt = (): ((
+    prompt: string,
+    includeCode: boolean
+) => Promise<void>) => {
+    const currentCode = useCurrentCode();
+
+    const { setModelChatting, setMessages, setSelected } =
+        useContext(AppContext);
 
     return useCallback(
-        async (prompt: string): Promise<void> => {
-            setChatting(true);
+        async (prompt, includeCode) => {
+            setModelChatting(true);
+
+            setMessages((previous) => [
+                {
+                    id: self.crypto.randomUUID(),
+                    type: "user",
+                    value: prompt,
+                    code: includeCode ? currentCode || null : null,
+                },
+                ...previous,
+            ]);
 
             try {
                 const response = await fetch(
@@ -23,6 +40,7 @@ export const useSendPrompt = (): ((topic: string) => Promise<void>) => {
                         },
                         body: JSON.stringify({
                             prompt,
+                            code: includeCode ? currentCode : undefined,
                         }),
                     }
                 );
@@ -48,7 +66,7 @@ export const useSendPrompt = (): ((topic: string) => Promise<void>) => {
                     setSelected(id);
                 }
 
-                setChatting(false);
+                setModelChatting(false);
             } catch (error) {
                 setMessages((previous) => [
                     {
@@ -60,9 +78,9 @@ export const useSendPrompt = (): ((topic: string) => Promise<void>) => {
                     ...previous,
                 ]);
                 console.error(error);
-                setChatting(false);
+                setModelChatting(false);
             }
         },
-        [setChatting, setMessages, setSelected]
+        [setModelChatting, setMessages, setSelected, currentCode]
     );
 };

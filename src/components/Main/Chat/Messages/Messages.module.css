@@ -1,0 +1,100 @@
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: auto;
+    padding: 16px;
+    margin: 0;
+    list-style: none;
+    flex: 1;
+}
+
+.message {
+    display: flex;
+    gap: 6px;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    width: fit-content;
+    padding: 12px 24px 12px 32px;
+    margin-left: 24px;
+    border-radius: 12px;
+    position: relative;
+    max-width: 90%;
+}
+.userMessage {
+    align-items: flex-end;
+    margin-left: auto;
+    margin-right: 24px;
+    text-align: right;
+    padding-right: 32px;
+    padding-left: 24px;
+    background: #4c1f7a;
+}
+
+.messageOwner {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.messageSystem {
+    font-size: 13px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text-color-tertiary);
+}
+.messageCode {
+    background: #251f7a;
+    border-color: #1a164e;
+}
+
+.loader {
+    margin: 16px auto;
+}
+
+.userAvatar,
+.avatar {
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    position: absolute;
+    left: -24px;
+    top: -12px;
+    background: var(--foreground-2-color);
+}
+
+.userAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    right: -24px;
+    left: unset;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+}
+
+.currentBadge {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 2px 6px;
+    background: #4d76f9;
+    border-radius: 6px;
+}
+
+.versionButton {
+    display: flex;
+    align-items: center;
+    background: #4d76f9;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+    margin-top: 4px;
+    font-size: 13px;
+    gap: 3px;
+}

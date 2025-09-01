@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Visualizer</title>
+        <style>
+            html,
+            body {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+
+            body {
+                flex-direction: column;
+                color-scheme: dark;
+                background: #2c2d38;
+                color: white;
+                padding: 16px;
+                align-items: center;
+                gap: 36px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            #canvas {
+                background: black;
+                border-radius: 8px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: unset;
+                height: 600px;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 24px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <input id="file" type="file" />
+            <audio id="player" controls></audio>
+        </header>
+        <canvas id="canvas"></canvas>
+        <script>
+            const audioElement = document.getElementById("player");
+            const fileElement = document.getElementById("file");
+            const canvasElement = document.getElementById("canvas");
+            let audioCtx;
+            let analyserNode;
+            let srcNode;
+            let dataTime;
+            let dataFreq;
+
+            const initAudioContext = () => {
+                audioCtx = new AudioContext();
+
+                analyserNode = audioCtx.createAnalyser();
+                analyserNode.smoothingTimeConstant = 0.95;
+                analyserNode.fftSize = 512;
+
+                dataTime = new Uint8Array(analyserNode.fftSize);
+                dataFreq = new Uint8Array(analyserNode.frequencyBinCount);
+            };
+
+            const setSource = async () => {
+                if (audioCtx.state === "suspended") {
+                    await audioCtx.resume();
+                }
+
+                if (srcNode) {
+                    srcNode.disconnect();
+                    analyserNode.disconnect();
+                }
+                srcNode = audioCtx.createMediaElementSource(audioElement);
+                srcNode.connect(analyserNode);
+                analyserNode.connect(audioCtx.destination);
+            };
+
+            fileElement.addEventListener("change", async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                const url = URL.createObjectURL(file);
+                audioElement.src = url;
+                setSource();
+                audioElement.play();
+            });
+
+            // GENERATED CODE
+            /* %tick% */
+            // END OF GENERATED CODE
+
+            const resize = () => {
+                const { width, height } = canvasElement.getBoundingClientRect();
+                canvasElement.width = width;
+                canvasElement.height = height;
+            };
+
+            let obj = {};
+            let lastTime = 0;
+
+            resize();
+            window.addEventListener("resize", resize, { passive: true });
+
+            initAudioContext();
+
+            const render = () => {
+                const canvasContext = canvasElement.getContext("2d");
+
+                if (canvasContext) {
+                    analyserNode.getByteFrequencyData(
+                        dataFreq
+                    );
+                    analyserNode.getByteTimeDomainData(
+                        dataTime
+                    );
+
+                    const currentTime = performance.now();
+                    const deltaTime = currentTime - lastTime;
+                    lastTime = currentTime;
+
+                    const metadata = {
+                        width: canvasElement.width,
+                        height: canvasElement.height,
+                        deltaTime: deltaTime,
+                        currentTime: currentTime,
+                        sampleRate: analyserNode.context.sampleRate || 44100,
+                    };
+
+                    tick(
+                        dataFreq,
+                        dataTime,
+                        canvasContext,
+                        obj,
+                        metadata
+                    );
+                }
+
+                requestAnimationFrame(render);
+            };
+
+            requestAnimationFrame(render);
+        </script>
+    </body>
+</html>

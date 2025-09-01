@@ -1,0 +1,47 @@
+ul + .promptContainer {
+    margin-top: auto;
+}
+
+.promptContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+    padding: 12px;
+}
+
+.prompt {
+    border: 1px solid var(--border-color);
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 8px;
+    background: none;
+    flex: 1;
+}
+.prompt:disabled {
+    cursor: progress;
+}
+
+.prompt::placeholder {
+    color: var(--text-color-tertiary);
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.submitButton:disabled {
+    cursor: progress;
+}
+
+.includeCodeLabel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-color-secondary);
+    font-size: 14px;
+    user-select: none;
+}

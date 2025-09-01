@@ -1,0 +1,64 @@
+.button {
+    display: flex;
+    gap: 0.3em;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    background: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-color-secondary);
+    padding: 8px 12px;
+    transition:
+        background 200ms,
+        color 200ms,
+        border-color 200ms;
+}
+
+.button.toggled {
+    background: #a64df9;
+    color: var(--text-color-primary);
+    border-color: #a64df9;
+}
+
+.button:not(:disabled):not(.toggled):hover {
+    color: var(--text-color-primary);
+    background: var(--border-color);
+}
+
+.button:not(:disabled):not(.toggled):active {
+    color: var(--text-color-primary);
+    background: #464757;
+    border-color: #464757;
+}
+
+.button.secondary {
+    border-color: transparent;
+}
+
+.button.large {
+    height: 48px;
+    font-size: 22px;
+}
+.button.large.square {
+    width: 48px;
+}
+
+.button.medium {
+    height: 36px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+.button.medium.square {
+    width: 36px;
+}
+
+.button.small {
+    height: 24px;
+    font-size: 13px;
+    border-radius: 4px;
+}
+.button.small.square {
+    width: 24px;
+}

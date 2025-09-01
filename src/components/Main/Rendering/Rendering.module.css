@@ -3,6 +3,7 @@
     border: none;
     flex: 1;
     border-radius: 12px;
+    pointer-events: none;
 }
 
 .container {
@@ -22,47 +23,21 @@
     gap: 12px;
 }
 
-.actionButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 12px;
-    height: 36px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background: none;
-    color: var(--text-color-secondary);
-    cursor: pointer;
-    font-size: 14px;
-    gap: 6px;
-    transition:
-        background 200ms,
-        color 200ms,
-        border-color 200ms;
-}
-
 .actionGroup {
     display: flex;
 }
-.actionGroup > *:first-child {
+.actionGroup > button:first-child {
     border-right: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
-.actionGroup > *:last-child {
+.actionGroup > button:last-child {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
 .actionRight {
     margin-left: auto;
-}
-
-.actionToggle,
-.actionButton:active {
-    background: #a64df9;
-    color: var(--text-color-primary);
-    border-color: #a64df9;
 }
 
 .codeWidget {

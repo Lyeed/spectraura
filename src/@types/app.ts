@@ -5,7 +5,7 @@ type ChatMessage =
           id: string;
           type: "user";
           value: string;
-          code?: never;
+          code: string | null;
       }
     | {
           id: string;

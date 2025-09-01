@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useRef, useState, type JSX } from "react";
+import {
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+    type JSX,
+} from "react";
 import audioVisualizer from "src/utils/AudioVisualizer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize } from "@fortawesome/free-solid-svg-icons/faMaximize";
@@ -11,6 +18,8 @@ import "highlight.js/styles/github.css";
 import { useCurrentCode } from "src/utils/useCurrentCode";
 import styles from "./Rendering.module.css";
 import runnerHtml from "./runner.html?raw";
+import templateHtml from "./template.html?raw";
+import { faDownload } from "@fortawesome/free-solid-svg-icons/faDownload";
 
 hljs.registerLanguage("javascript", javascript);
 
@@ -25,7 +34,22 @@ export const Rendering = (): JSX.Element => {
 
     const iframeRef = useRef<HTMLIFrameElement>(null);
 
+    const downloadUrl = useMemo(
+        () =>
+            URL.createObjectURL(
+                new Blob([templateHtml.replace("/* %tick% */", lastCode)], {
+                    type: "text/html;charset=utf-8",
+                })
+            ),
+        [lastCode]
+    );
+
     const tick = useCallback(() => {
+        if (!iframeRef.current || document.hidden) {
+            requestRef.current = requestAnimationFrame(tick);
+            return;
+        }
+
         audioVisualizer.analyserNode.getByteFrequencyData(
             audioVisualizer.dataFreq
         );
@@ -33,13 +57,18 @@ export const Rendering = (): JSX.Element => {
             audioVisualizer.dataTime
         );
 
-        iframeRef.current?.contentWindow?.postMessage(
+        const freqBuffer = audioVisualizer.dataFreq.buffer.slice();
+        const timeBuffer = audioVisualizer.dataTime.buffer.slice();
+        
+        iframeRef.current.contentWindow?.postMessage(
             {
                 type: "frame",
-                freq: audioVisualizer.dataFreq,
-                time: audioVisualizer.dataTime,
+                freq: freqBuffer,
+                time: timeBuffer,
+                sampleRate: audioVisualizer.analyserNode.context.sampleRate,
             },
-            "*"
+            "*",
+            [freqBuffer, timeBuffer]
         );
         requestRef.current = requestAnimationFrame(tick);
     }, []);
@@ -66,7 +95,21 @@ export const Rendering = (): JSX.Element => {
         }
 
         const code = hljs.highlight(
-            `// function tick(freq: Uint8Array, time: Uint8Array, canvasContext: CanvasRenderingContext2D): void;\n${lastCode}`,
+            `/*
+    function tick(
+        freq: Uint8Array,
+        time: Uint8Array,
+        canvasContext: CanvasRenderingContext2D,
+        obj: Object,
+        metadata: {
+            width: number,
+            height: number,
+            deltaTime: number,
+            currentTime: number,
+            sampleRate: number,
+        }
+    ): void;
+*/\n${lastCode}`,
             {
                 language: "javascript",
             }
@@ -96,8 +139,9 @@ export const Rendering = (): JSX.Element => {
                 <div className={styles.actionGroup}>
                     <button
                         className={clsx(
-                            styles.actionButton,
-                            !displayCode && styles.actionToggle
+                            !displayCode && "toggled",
+                            "button",
+                            "medium"
                         )}
                         type="button"
                         onClick={handleShowVisualizer}
@@ -107,8 +151,9 @@ export const Rendering = (): JSX.Element => {
                     </button>
                     <button
                         className={clsx(
-                            styles.actionButton,
-                            displayCode && styles.actionToggle
+                            displayCode && "toggled",
+                            "button",
+                            "medium"
                         )}
                         type="button"
                         onClick={handleShowCode}
@@ -117,12 +162,17 @@ export const Rendering = (): JSX.Element => {
                         JavaScript
                     </button>
                 </div>
+                <a
+                    className={`${styles.actionRight} button medium`}
+                    download="visualizer.html"
+                    href={downloadUrl}
+                >
+                    <FontAwesomeIcon icon={faDownload} />
+                    Download
+                </a>
                 {!displayCode && (
                     <button
-                        className={clsx(
-                            styles.actionButton,
-                            styles.actionRight
-                        )}
+                        className="button medium"
                         type="button"
                         onClick={handleFullScreen}
                     >

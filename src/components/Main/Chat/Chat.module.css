@@ -4,12 +4,12 @@
     grid-area: chat;
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 16px;
     background: var(--foreground-1-color);
+    overflow: hidden;
 }
 
 .header {
-    margin: 0 auto 12px auto;
+    margin: 16px auto;
     width: 80%;
     border-bottom: 1px solid var(--border-color);
 }
@@ -26,164 +26,4 @@
 }
 .title b {
     color: white;
-}
-
-.prompt {
-    border: 1px solid var(--border-color);
-    height: 48px;
-    padding: 0 16px;
-    border-radius: 8px;
-    background: none;
-    flex: 1;
-}
-.prompt:disabled {
-    cursor: progress;
-}
-
-.prompt::placeholder {
-    color: var(--text-color-tertiary);
-}
-
-.promptContainer {
-    display: flex;
-    margin-top: auto;
-    gap: 6px;
-}
-
-.promptSubmit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 48px;
-    width: 48px;
-    border: 1px solid var(--border-color);
-    background: none;
-    border-radius: 8px;
-    cursor: pointer;
-    color: var(--text-color-secondary);
-}
-.promptSubmit:disabled {
-    cursor: progress;
-}
-
-.messages {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    overflow: auto;
-    padding: 12px 0;
-}
-
-.message {
-    display: flex;
-    gap: 6px;
-    flex-direction: column;
-    border: 1px solid var(--border-color);
-    width: fit-content;
-    padding: 12px 24px 12px 32px;
-    margin-left: 24px;
-    border-radius: 12px;
-    position: relative;
-    max-width: 90%;
-}
-.userMessage {
-    align-items: flex-end;
-    margin-left: auto;
-    margin-right: 24px;
-    text-align: right;
-    padding-right: 32px;
-    padding-left: 24px;
-}
-
-.messageOwner {
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.messageSystem {
-    font-size: 13px;
-    margin: 0 auto;
-    text-align: center;
-    color: var(--text-color-tertiary);
-}
-
-.loader {
-    margin: 16px auto;
-}
-
-.userAvatar,
-.avatar {
-    padding: 6px;
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    position: absolute;
-    left: -24px;
-    top: -12px;
-    background: var(--foreground-2-color);
-}
-
-.userAvatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    right: -24px;
-    left: unset;
-    width: 48px;
-    height: 48px;
-    font-size: 22px;
-}
-
-.currentBadge {
-    margin-left: auto;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 2px 6px;
-    background: #4d76f9;
-    border-radius: 6px;
-}
-
-.suggestions {
-    display: flex;
-    flex-direction: column;
-    margin: auto 0 12px 0;
-    gap: 6px;
-}
-.suggestions + .promptContainer {
-    margin-top: 0;
-}
-
-.suggestion {
-    background: none;
-    border: 1px solid var(--border-color);
-    text-align: left;
-    font-size: 13px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: var(--text-color-secondary);
-    padding: 6px 12px;
-    transition: color 200ms;
-}
-.suggestion:hover {
-    color: var(--text-color-primary);
-}
-.suggestion:disabled {
-    cursor: progress;
-}
-
-.suggestionsTitle {
-    font-size: 12px;
-    color: var(--text-color-tertiary);
-    padding-top: 8px;
-}
-
-.versionButton {
-    background: #4d76f9;
-    padding: 4px 12px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    width: fit-content;
 }

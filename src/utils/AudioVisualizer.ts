@@ -1,3 +1,5 @@
+export type SupportedSource = HTMLAudioElement | MediaStream;
+
 class AudioVisualizer {
     audioCtx: AudioContext;
     analyserNode: AnalyserNode;
@@ -16,19 +18,25 @@ class AudioVisualizer {
         this.dataFreq = new Uint8Array(this.analyserNode.frequencyBinCount);
     }
 
-    async setSource(audioElement: HTMLAudioElement) {
+    async setAudioSource(source: SupportedSource) {
         if (this.audioCtx.state === "suspended") {
             await this.audioCtx.resume();
         }
 
         if (this.srcNode) {
             this.srcNode.disconnect();
+            this.analyserNode.disconnect();
         }
 
-        this.srcNode = this.audioCtx.createMediaElementSource(audioElement);
+        this.srcNode =
+            source instanceof HTMLAudioElement
+                ? this.audioCtx.createMediaElementSource(source)
+                : this.audioCtx.createMediaStreamSource(source);
         this.srcNode.connect(this.analyserNode);
 
-        this.analyserNode.connect(this.audioCtx.destination);
+        if (!(source instanceof MediaStream)) {
+            this.analyserNode.connect(this.audioCtx.destination);
+        }
     }
 }
 

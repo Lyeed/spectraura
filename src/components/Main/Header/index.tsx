@@ -4,7 +4,7 @@ import styles from "./Header.module.css";
 
 export const Header = (): JSX.Element => (
     <header className={styles.container}>
-        <img width={64} height={64} src={logoPath} />
+        <img width={72} height={72} src={logoPath} />
         <h1 className={styles.title}>
             Spectr<b>aura</b>
             <br />

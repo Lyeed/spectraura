@@ -1,11 +1,12 @@
 .container {
     display: grid;
     grid-template:
+        "header player" auto
         "chat rendering" 1fr
-        "chat player" auto
+        "chat footer" auto
         / 400px 1fr;
-    grid-gap: 24px;
-    margin: 0 24px;
+    grid-gap: 16px;
+    padding: 16px;
     flex: 1;
     overflow: auto;
 }

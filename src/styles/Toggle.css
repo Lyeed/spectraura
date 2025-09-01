@@ -1,0 +1,30 @@
+.toggle {
+    appearance: none;
+    min-width: 46px;
+    min-height: 28px;
+    max-width: 46px;
+    max-height: 28px;
+    border-radius: 14px;
+    position: relative;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+}
+
+.toggle::after {
+    content: " ";
+    min-height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    position: absolute;
+    left: 2px;
+    pointer-events: none;
+    top: 2px;
+    transition:
+        left 200ms,
+        background 200ms;
+    background: var(--border-color);
+}
+.toggle:checked::after {
+    left: calc(100% - 20px - 2px);
+    background: var(--text-color-secondary);
+}

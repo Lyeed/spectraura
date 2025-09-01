@@ -1,0 +1,10 @@
+.audio {
+    min-width: 360px;
+}
+
+::-webkit-media-controls-panel {
+    background: var(--background-color);
+    border: none;
+    outline: none;
+    box-shadow: none;
+}

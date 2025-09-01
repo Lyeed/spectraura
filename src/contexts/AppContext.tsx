@@ -12,12 +12,11 @@ import {
 interface IAppContext {
     selected: string | null;
     setSelected: Dispatch<SetStateAction<string | null>>;
-    ready: boolean;
-    setReady: Dispatch<SetStateAction<boolean>>;
     messages: ChatMessage[];
     setMessages: Dispatch<SetStateAction<ChatMessage[]>>;
     chatting: boolean;
-    setChatting: Dispatch<SetStateAction<boolean>>;
+    setLocalChatting: Dispatch<SetStateAction<boolean>>;
+    setModelChatting: Dispatch<SetStateAction<boolean>>;
 }
 
 const AppContext = createContext<IAppContext>({} as IAppContext);
@@ -28,16 +27,10 @@ const possibleEntrance = [
     "Upload a song, and I'll show you the unseen patterns hiding in its sound.",
 ];
 
-const possibleBegin = [
-    "The song is bound to me now… Speak, and I shall weave its aura into light.",
-    "I hear its rhythm pulsing. Guide me, and we will shape the spectrum together.",
-    "Your track breathes within the void. Tell me how you wish to see it, and I will obey.",
-];
-
 export const AppProvider = ({ children }: PropsWithChildren): JSX.Element => {
-    const [ready, setReady] = useState(false);
+    const [localChatting, setLocalChatting] = useState(true);
 
-    const [chatting, setChatting] = useState(true);
+    const [modelChatting, setModelChatting] = useState(false);
 
     const [selected, setSelected] = useState<string | null>(null);
 
@@ -47,39 +40,17 @@ export const AppProvider = ({ children }: PropsWithChildren): JSX.Element => {
         () => ({
             selected,
             setSelected,
-            ready,
-            setReady,
             messages,
             setMessages,
-            chatting,
-            setChatting,
+            chatting: localChatting || modelChatting,
+            setLocalChatting,
+            setModelChatting,
         }),
-        [ready, messages, chatting, selected]
+        [messages, modelChatting, selected, localChatting]
     );
 
     useEffect(() => {
-        setChatting(true);
-
-        if (!ready) {
-            const timeout = window.setTimeout(() => {
-                setMessages((previous) => [
-                    {
-                        id: self.crypto.randomUUID(),
-                        type: "spectre",
-                        code: "",
-                        value: possibleEntrance[
-                            Math.floor(Math.random() * possibleEntrance.length)
-                        ]!,
-                    },
-                    ...previous,
-                ]);
-                setChatting(false);
-            }, 1000);
-
-            return () => {
-                window.clearTimeout(timeout);
-            };
-        }
+        setLocalChatting(true);
 
         const timeout = window.setTimeout(() => {
             setMessages((previous) => [
@@ -87,19 +58,19 @@ export const AppProvider = ({ children }: PropsWithChildren): JSX.Element => {
                     id: self.crypto.randomUUID(),
                     type: "spectre",
                     code: "",
-                    value: possibleBegin[
-                        Math.floor(Math.random() * possibleBegin.length)
+                    value: possibleEntrance[
+                        Math.floor(Math.random() * possibleEntrance.length)
                     ]!,
                 },
                 ...previous,
             ]);
-            setChatting(false);
-        }, 2000);
+            setLocalChatting(false);
+        }, 1000);
 
         return () => {
             window.clearTimeout(timeout);
         };
-    }, [ready]);
+    }, []);
 
     return (
         <AppContext.Provider value={context}>{children}</AppContext.Provider>

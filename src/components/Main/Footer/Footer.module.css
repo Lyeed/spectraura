@@ -1,9 +1,8 @@
 .container {
     display: flex;
-    margin-top: 24px;
-    padding: 16px;
     justify-content: space-around;
     font-size: 14px;
+    grid-area: footer;
 }
 
 .link:visited,

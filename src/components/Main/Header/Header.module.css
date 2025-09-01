@@ -1,13 +1,14 @@
 .container {
     display: flex;
     align-items: center;
-    padding: 8px 16px;
     gap: 4px;
+    grid-area: header;
 }
 
 .title {
     font-weight: 500;
     font-size: 24px;
+    margin: 0;
 }
 .title b {
     font-weight: 800;
