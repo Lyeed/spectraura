@@ -1,0 +1,46 @@
+.codeWidget {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background: var(--foreground-1-color);
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 12px;
+    height: 120px;
+    overflow: auto;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.message {
+    font-size: 14px;
+}
+.message.error {
+    color: rgb(208, 32, 32);
+}
+.message.warning {
+    color: rgb(223, 156, 33);
+}
+
+.editorContainer {
+    flex: 1;
+}
+
+.consoleTitle {
+    padding: 12px 8px 4px 8px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+}

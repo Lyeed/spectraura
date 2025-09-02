@@ -11,8 +11,8 @@ class AudioVisualizer {
         this.audioCtx = new AudioContext();
 
         this.analyserNode = this.audioCtx.createAnalyser();
-        this.analyserNode.smoothingTimeConstant = 0.95; // Can be customized
-        this.analyserNode.fftSize = 512; // Can be customized
+        this.analyserNode.smoothingTimeConstant = 0.95;
+        this.analyserNode.fftSize = 1024;
 
         this.dataTime = new Uint8Array(this.analyserNode.fftSize);
         this.dataFreq = new Uint8Array(this.analyserNode.frequencyBinCount);

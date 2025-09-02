@@ -4,15 +4,14 @@
     background: var(--foreground-1-color);
     grid-area: player;
     border: 1px solid var(--border-color);
-    height: 72px;
     margin-left: auto;
     gap: 12px;
     padding-left: 16px;
-    overflow: hidden;
 }
 
 .content {
     display: flex;
+    height: 72px;
     gap: 8px;
     align-items: center;
 }
@@ -25,4 +24,27 @@
     font-size: 18px;
     padding: 12px 16px;
     background: #164a6d;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        flex-direction: column-reverse;
+        padding: 0;
+        width: 100%;
+    }
+
+    .content {
+        flex-direction: column;
+        height: unset;
+        padding: 0 12px 12px 12px;
+        gap: 12px;
+    }
+
+    .title {
+        border-top-left-radius: 12px;
+        border-bottom-right-radius: 0;
+        justify-content: center;
+    }
 }

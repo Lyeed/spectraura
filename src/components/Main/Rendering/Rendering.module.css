@@ -15,6 +15,11 @@
     grid-area: rendering;
     background: var(--foreground-1-color);
     gap: 12px;
+}
+
+.content {
+    display: flex;
+    flex: 1;
     position: relative;
 }
 
@@ -40,18 +45,17 @@
     margin-left: auto;
 }
 
-.codeWidget {
-    display: flex;
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    height: calc(100% - 64px);
-    top: 64px;
-    left: 0;
-    background: var(--foreground-2-color);
-    border-radius: 12px;
-    padding: 16px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    overflow: auto;
+@media screen and (max-width: 1000px) {
+    .toolbar {
+        flex-direction: column;
+    }
+    .actionRight {
+        margin: 0;
+    }
+    .actionGroup {
+        width: 100%;
+    }
+    .actionGroup > * {
+        flex: 1;
+    }
 }

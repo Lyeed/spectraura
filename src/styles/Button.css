@@ -16,6 +16,11 @@
         border-color 200ms;
 }
 
+.button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .button.toggled {
     background: #a64df9;
     color: var(--text-color-primary);

@@ -6,8 +6,8 @@ import {
     useMemo,
     useState,
     type JSX,
-    useEffect,
 } from "react";
+import defaultCode from "src/utils/defaultVisualizer?raw";
 
 interface IAppContext {
     selected: string | null;
@@ -22,19 +22,28 @@ interface IAppContext {
 const AppContext = createContext<IAppContext>({} as IAppContext);
 
 const possibleEntrance = [
-    "To begin, choose or drop an audio file. I'll transform its frequencies into living visuals.",
-    "Select your track, and I'll forge its spectrum into neon light.",
-    "Upload a song, and I'll show you the unseen patterns hiding in its sound.",
+    "Select your audio source. I'll transform its frequencies into living visuals.\n\nIn the meantime, I've already prepared a visualization we can work with.",
+    "Select your audio source, and I'll forge its spectrum into neon light.\n\nIn the meantime, I've already prepared a visualization we can work with.",
+    "Select your audio source, and I'll show you the unseen patterns hiding in its sound.\n\nIn the meantime, I've already prepared a visualization we can work with.",
 ];
 
 export const AppProvider = ({ children }: PropsWithChildren): JSX.Element => {
-    const [localChatting, setLocalChatting] = useState(true);
+    const [localChatting, setLocalChatting] = useState(false);
 
     const [modelChatting, setModelChatting] = useState(false);
 
-    const [selected, setSelected] = useState<string | null>(null);
+    const [selected, setSelected] = useState<string | null>("base");
 
-    const [messages, setMessages] = useState<ChatMessage[]>([]);
+    const [messages, setMessages] = useState<ChatMessage[]>([
+        {
+            id: "base",
+            type: "spectre",
+            code: defaultCode,
+            value: possibleEntrance[
+                Math.floor(Math.random() * possibleEntrance.length)
+            ]!,
+        },
+    ]);
 
     const context = useMemo(
         () => ({
@@ -48,29 +57,6 @@ export const AppProvider = ({ children }: PropsWithChildren): JSX.Element => {
         }),
         [messages, modelChatting, selected, localChatting]
     );
-
-    useEffect(() => {
-        setLocalChatting(true);
-
-        const timeout = window.setTimeout(() => {
-            setMessages((previous) => [
-                {
-                    id: self.crypto.randomUUID(),
-                    type: "spectre",
-                    code: "",
-                    value: possibleEntrance[
-                        Math.floor(Math.random() * possibleEntrance.length)
-                    ]!,
-                },
-                ...previous,
-            ]);
-            setLocalChatting(false);
-        }, 1000);
-
-        return () => {
-            window.clearTimeout(timeout);
-        };
-    }, []);
 
     return (
         <AppContext.Provider value={context}>{children}</AppContext.Provider>

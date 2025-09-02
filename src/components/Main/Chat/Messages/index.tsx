@@ -72,7 +72,9 @@ export const Messages = (): JSX.Element => {
                                 </span>
                             ) : null}
                         </span>
-                        <span>{message.value}</span>
+                        <pre className={styles.messageContent}>
+                            {message.value}
+                        </pre>
                         {message.type === "spectre" &&
                         message.code &&
                         selected !== message.id ? (

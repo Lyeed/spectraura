@@ -53,6 +53,8 @@
             const audioElement = document.getElementById("player");
             const fileElement = document.getElementById("file");
             const canvasElement = document.getElementById("canvas");
+            const canvasContext = canvasElement.getContext("2d");
+
             let audioCtx;
             let analyserNode;
             let srcNode;
@@ -64,7 +66,7 @@
 
                 analyserNode = audioCtx.createAnalyser();
                 analyserNode.smoothingTimeConstant = 0.95;
-                analyserNode.fftSize = 512;
+                analyserNode.fftSize = 1024;
 
                 dataTime = new Uint8Array(analyserNode.fftSize);
                 dataFreq = new Uint8Array(analyserNode.frequencyBinCount);
@@ -112,36 +114,22 @@
             initAudioContext();
 
             const render = () => {
-                const canvasContext = canvasElement.getContext("2d");
+                analyserNode.getByteFrequencyData(dataFreq);
+                analyserNode.getByteTimeDomainData(dataTime);
 
-                if (canvasContext) {
-                    analyserNode.getByteFrequencyData(
-                        dataFreq
-                    );
-                    analyserNode.getByteTimeDomainData(
-                        dataTime
-                    );
+                const currentTime = performance.now();
+                const deltaTime = currentTime - lastTime;
+                lastTime = currentTime;
 
-                    const currentTime = performance.now();
-                    const deltaTime = currentTime - lastTime;
-                    lastTime = currentTime;
+                const metadata = {
+                    width: canvasElement.width,
+                    height: canvasElement.height,
+                    deltaTime: deltaTime,
+                    currentTime: currentTime,
+                    sampleRate: analyserNode.context.sampleRate || 44100,
+                };
 
-                    const metadata = {
-                        width: canvasElement.width,
-                        height: canvasElement.height,
-                        deltaTime: deltaTime,
-                        currentTime: currentTime,
-                        sampleRate: analyserNode.context.sampleRate || 44100,
-                    };
-
-                    tick(
-                        dataFreq,
-                        dataTime,
-                        canvasContext,
-                        obj,
-                        metadata
-                    );
-                }
+                tick(dataFreq, dataTime, canvasContext, obj, metadata);
 
                 requestAnimationFrame(render);
             };

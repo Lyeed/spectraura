@@ -65,8 +65,8 @@ export const FilePicker = ({
             <button
                 className={`button medium ${styles.uploadFileButton}`}
                 type="button"
-                onClick={handleShowFileExplorer}
                 title="Select an audio file from your device"
+                onClick={handleShowFileExplorer}
             >
                 <FontAwesomeIcon icon={faUpload} />
                 File
@@ -75,8 +75,8 @@ export const FilePicker = ({
             <button
                 className={`button medium ${styles.uploadFileButton}`}
                 type="button"
-                onClick={handleSelectStream}
                 title="Select an application emitting audio"
+                onClick={handleSelectStream}
             >
                 <FontAwesomeIcon icon={faDesktop} />
                 Stream

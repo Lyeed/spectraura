@@ -25,7 +25,6 @@
     align-items: flex-end;
     margin-left: auto;
     margin-right: 24px;
-    text-align: right;
     padding-right: 32px;
     padding-left: 24px;
     background: #4c1f7a;
@@ -47,6 +46,12 @@
 .messageCode {
     background: #251f7a;
     border-color: #1a164e;
+}
+
+.messageContent {
+    font: inherit;
+    margin: 0;
+    white-space: pre-line;
 }
 
 .loader {

@@ -38,6 +38,11 @@
         <script>
             const canvasElement = document.getElementById("canvas");
             const offscreen = canvasElement.transferControlToOffscreen();
+            const canvasContext = offscreen.getContext("2d");
+
+            if (!canvasContext) {
+                throw new Error("Invalid canvas context");
+            }
 
             /* %tick% */
 
@@ -58,32 +63,23 @@
 
                 switch (data.type) {
                     case "frame": {
-                        const canvasContext = offscreen.getContext("2d");
+                        const currentTime = performance.now();
+                        const deltaTime = currentTime - lastTime;
+                        lastTime = currentTime;
 
-                        if (canvasContext) {
-                            const currentTime = performance.now();
-                            const deltaTime = currentTime - lastTime;
-                            lastTime = currentTime;
-
-                            const metadata = {
+                        tick(
+                            new Uint8Array(data.freq),
+                            new Uint8Array(data.time),
+                            canvasContext,
+                            obj,
+                            {
                                 width: offscreen.width,
                                 height: offscreen.height,
                                 deltaTime: deltaTime,
                                 currentTime: currentTime,
                                 sampleRate: data.sampleRate || 44100,
-                            };
-
-                            const freqArray = new Uint8Array(data.freq);
-                            const timeArray = new Uint8Array(data.time);
-
-                            tick(
-                                freqArray,
-                                timeArray,
-                                canvasContext,
-                                obj,
-                                metadata
-                            );
-                        }
+                            }
+                        );
 
                         break;
                     }
