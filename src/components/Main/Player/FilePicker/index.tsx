@@ -9,6 +9,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons/faUpload";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons/faDesktop";
 import styles from "./FilePicker.module.css";
+import Lofi from "/lofi-study.mp3?url";
+import Phonk from "/phonk.mp3?url";
+import RapBeat from "/rap-beat.mp3?url";
 
 export const FilePicker = ({
     onPickSource,
@@ -83,7 +86,7 @@ export const FilePicker = ({
             </button>
             <span className={styles.pickText}>or pick a sample</span>
             <button
-                data-song="/lofi-study.mp3"
+                data-song={Lofi}
                 type="button"
                 className={styles.availableSong}
                 onClick={handleLoadAvailableSong}
@@ -91,7 +94,7 @@ export const FilePicker = ({
                 🎧 Lofi study
             </button>
             <button
-                data-song="/phonk.mp3"
+                data-song={Phonk}
                 type="button"
                 className={styles.availableSong}
                 onClick={handleLoadAvailableSong}
@@ -99,7 +102,7 @@ export const FilePicker = ({
                 🔥 Phonk
             </button>
             <button
-                data-song="/rap-beat.mp3"
+                data-song={RapBeat}
                 type="button"
                 className={styles.availableSong}
                 onClick={handleLoadAvailableSong}
