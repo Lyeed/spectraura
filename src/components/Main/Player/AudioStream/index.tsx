@@ -2,7 +2,6 @@ import { useEffect, type JSX } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 import audioVisualizer from "src/utils/AudioVisualizer";
-import styles from "./AudioStream.module.css";
 
 export const AudioStream = ({
     source,

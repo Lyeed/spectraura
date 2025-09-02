@@ -42,6 +42,7 @@ https://lyeed.github.io/
 ## Samples
 
 References
+
 - [Phonk](https://pixabay.com/music/upbeat-phonk-music-388293/)
-- [Lofi study](https://pixabay.com/music/beats-lofi-study-calm-peaceful-chill-hop-112191/)
+- [Lofi](https://pixabay.com/music/beats-lofi-study-calm-peaceful-chill-hop-112191/)
 - [Rap beat](https://pixabay.com/music/trap-royalty-free-element-hard-rap-beat-231463/)

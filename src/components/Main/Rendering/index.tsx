@@ -129,7 +129,11 @@ export const Rendering = (): JSX.Element => {
                         type="button"
                         disabled={!canSave}
                         onClick={handleSaveChanges}
-                        title={canSave ? undefined : "Code must not have errors nor be identical"}
+                        title={
+                            canSave
+                                ? undefined
+                                : "Code must not have errors nor be identical"
+                        }
                     >
                         <FontAwesomeIcon icon={faSave} />
                         Save changes
@@ -152,6 +156,7 @@ export const Rendering = (): JSX.Element => {
                     sandbox="allow-scripts"
                     referrerPolicy="no-referrer"
                     srcDoc={runnerHtml.replace("/* %tick% */", lastCode)}
+                    width="100%"
                     className={styles.iframe}
                 />
                 {displayCode ? <CodeViewer /> : null}

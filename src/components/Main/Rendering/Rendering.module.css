@@ -57,5 +57,6 @@
     }
     .actionGroup > * {
         flex: 1;
+        padding: 0;
     }
 }

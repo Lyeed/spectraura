@@ -11,17 +11,6 @@
     overflow: auto;
 }
 
-@media screen and (min-width: 1000px) and (max-width: 1400px) {
-    .container {
-        grid-template:
-            "header header" auto
-            "player player" auto
-            "chat rendering" 1fr
-            "chat footer" auto
-            / 400px 1fr;
-    }
-}
-
 @media screen and (max-width: 1000px) {
     .container {
         grid-template:

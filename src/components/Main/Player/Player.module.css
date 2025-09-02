@@ -36,10 +36,11 @@
     }
 
     .content {
-        flex-direction: column;
         height: unset;
+        flex-wrap: wrap;
         padding: 0 12px 12px 12px;
-        gap: 12px;
+        justify-content: center;
+        gap: 8px;
     }
 
     .title {

@@ -3,6 +3,10 @@
 }
 
 .availableSong {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
     background: var(--background-color);
     border: 1px solid var(--border-color);
     padding: 12px 18px;
@@ -16,5 +20,21 @@
     visibility: hidden;
 }
 
-.uploadFileButton {
+.samples {
+    display: flex;
+    gap: 6px;
+}
+
+@media screen and (max-width: 1300px) {
+    .action span,
+    .availableSong span {
+        display: none;
+    }
+
+    .availableSong,
+    .action {
+        min-height: 36px;
+        min-width: 36px;
+        padding: 0 !important;
+    }
 }
