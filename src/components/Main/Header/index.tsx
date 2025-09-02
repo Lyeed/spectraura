@@ -6,7 +6,7 @@ export const Header = (): JSX.Element => (
     <header className={styles.container}>
         <img width={72} height={72} src={logoPath} />
         <h1 className={styles.title}>
-            Spectr<b>aura</b>
+            Spectr<b>Aura</b>
             <br />
             <small>AI-powered sound visualizations</small>
         </h1>
