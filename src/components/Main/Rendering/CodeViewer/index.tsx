@@ -24,7 +24,6 @@ export const CodeViewer = (): JSX.Element => {
 
     const handleValidate: OnValidate = useCallback(
         (markers) => {
-            console.log(markers);
             setMessages(
                 markers.map((marker) => ({
                     message: `Line ${marker.startLineNumber}: ${marker.message}`,
