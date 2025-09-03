@@ -1,5 +1,3 @@
-![SpectrAura logo](./public/thumbnail.jpg)
-
 # SpectrAura - AI-powered sound visualizations
 
 SpectrAura is a web application that leverages the Web Audio API and HTML5 Canvas to generate real-time, interactive music visualizations. Users can upload audio or stream via the built-in player, while an AI assistant (The Spectre) generates and refines visualization logic through JavaScript.
