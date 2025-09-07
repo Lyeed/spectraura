@@ -1,14 +1,14 @@
 /**
- * @param {Uint8Array} freq - Frequency data array (0–255 values) representing the FFT spectrum of the current audio frame.
- * @param {Uint8Array} time - Time-domain data array (0–255 values) representing the raw waveform of the current audio frame.
+ * @param {Readonly<Uint8Array>} freq - Frequency data array (0–255 values) representing the FFT spectrum of the current audio frame.
+ * @param {Readonly<Uint8Array>} time - Time-domain data array (0–255 values) representing the raw waveform of the current audio frame.
  * @param {CanvasRenderingContext2D} canvasContext - 2D canvas context where the visualization is drawn.
- * @param {Record<string, unknown>} obj - Internal state, persistent between tick() calls. Can be freely used.
+ * @param {Record<string, unknown>} object - Internal state, persistent between tick() calls. Can be freely used.
  * @param {{
- *   width: number,
- *   height: number,
- *   deltaTime: number,
- *   currentTime: number,
- *   sampleRate: number
+ *   readonly width: number,
+ *   readonly height: number,
+ *   readonly deltaTime: number,
+ *   readonly currentTime: number,
+ *   readonly sampleRate: number
  * }} metadata
  */
 function tick(freq, time, canvasContext, object, metadata) {

@@ -45,6 +45,17 @@
     margin-left: auto;
 }
 
+.actionLabel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 12px;
+    color: var(--text-color-tertiary);
+}
+.actionLabel input[type="number"] {
+    max-width: 86px;
+}
+
 @media screen and (max-width: 1000px) {
     .toolbar {
         flex-direction: column;

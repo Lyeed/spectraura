@@ -21,7 +21,7 @@ export const FilePicker = ({
 }): JSX.Element => {
     const disabledStream = useMemo(
         () =>
-            /(Mobi|Android|iPhone|iPad|iPod|FxiOS|Firefox|Version\/\d+.*Safari)/i.test(
+            /(mobi|android|iphone|ipad|ipod|fxios|firefox|version\/\d+.*safari)/i.test(
                 navigator.userAgent
             ),
         []

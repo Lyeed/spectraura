@@ -12,11 +12,7 @@ ul + .promptContainer {
 }
 
 .prompt {
-    border: 1px solid var(--border-color);
-    height: 48px;
-    padding: 0 16px;
-    border-radius: 8px;
-    background: none;
+    height: 48px !important;
     flex: 1;
 }
 .prompt:disabled {

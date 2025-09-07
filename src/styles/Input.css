@@ -1,0 +1,11 @@
+.input {
+    border: 1px solid var(--border-color);
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    background: none;
+}
+
+.input option {
+    background: var(--foreground-1-color);
+}

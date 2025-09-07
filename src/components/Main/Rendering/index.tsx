@@ -1,4 +1,5 @@
 import {
+    type ChangeEventHandler,
     useCallback,
     useContext,
     useMemo,
@@ -17,12 +18,17 @@ import { useSyncRunner } from "src/utils/useSyncRunner";
 import { faSave } from "@fortawesome/free-solid-svg-icons/faSave";
 import RenderingContext from "src/contexts/RenderingContext";
 import AppContext from "src/contexts/AppContext";
+import audioVisualizer from "src/utils/AudioVisualizer";
 import styles from "./Rendering.module.css";
 import runnerHtml from "./runner.html?raw";
 import templateHtml from "./template.html?raw";
 import { CodeViewer } from "./CodeViewer";
 
 export const Rendering = (): JSX.Element => {
+    const [fpsMax, setFpsMax] = useState(45);
+
+    const [fftSize, setFftSize] = useState("2048");
+
     const { setMessages, selected } = useContext(AppContext);
 
     const { canSave, editingCode, setCanSave } = useContext(RenderingContext);
@@ -43,7 +49,22 @@ export const Rendering = (): JSX.Element => {
         [lastCode]
     );
 
-    useSyncRunner(iframeRef);
+    const handleFpsMaxChange = useCallback<
+        ChangeEventHandler<HTMLInputElement>
+    >((event) => {
+        setFpsMax(event.currentTarget.valueAsNumber);
+    }, []);
+
+    const handleFftSizeChange = useCallback<
+        ChangeEventHandler<HTMLSelectElement>
+    >((event) => {
+        setFftSize(event.currentTarget.value);
+        audioVisualizer.analyserNode.fftSize = Number(
+            event.currentTarget.value
+        );
+    }, []);
+
+    useSyncRunner(iframeRef, fpsMax);
 
     const handleSaveChanges = useCallback(() => {
         setDisplayCode(false);
@@ -115,6 +136,30 @@ export const Rendering = (): JSX.Element => {
                         JavaScript
                     </button>
                 </div>
+                 {/*
+                    <label className={styles.actionLabel}>
+                        FPS max
+                        <input
+                            className="input"
+                            type="number"
+                            value={fpsMax}
+                            onChange={handleFpsMaxChange}
+                        />
+                    </label>
+                    <label className={styles.actionLabel}>
+                        fft size
+                        <select
+                            className="input"
+                            value={fftSize}
+                            onChange={handleFftSizeChange}
+                        >
+                            <option>512</option>
+                            <option>1024</option>
+                            <option>2048</option>
+                            <option>4096</option>
+                        </select>
+                    </label>
+                 */}
                 <a
                     className={`${styles.actionRight} button medium`}
                     download="visualizer.html"
@@ -128,12 +173,12 @@ export const Rendering = (): JSX.Element => {
                         className="button medium"
                         type="button"
                         disabled={!canSave}
-                        onClick={handleSaveChanges}
                         title={
                             canSave
                                 ? undefined
                                 : "Code must not have errors nor be identical"
                         }
+                        onClick={handleSaveChanges}
                     >
                         <FontAwesomeIcon icon={faSave} />
                         Save changes

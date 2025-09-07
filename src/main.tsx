@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "node_modules/modern-normalize/modern-normalize.css";
 import { App } from "./components/App";
 import "./styles/style.css";
+import "./styles/Input.css";
 import "./styles/Toggle.css";
 import "./styles/Button.css";
 import { AppProvider } from "./contexts/AppContext";

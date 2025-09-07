@@ -54,7 +54,7 @@ export const Form = (): JSX.Element => {
                             ? "The Spectre is thinking..."
                             : "Message the Spectre..."
                     }
-                    className={styles.prompt}
+                    className={`${styles.prompt} input`}
                     value={prompt}
                     disabled={chatting}
                     onChange={handleChangePrompt}
